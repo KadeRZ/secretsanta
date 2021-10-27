@@ -1,0 +1,30 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+header h1{
+    display: flex;
+    justify-content: center;
+	color: white;
+	font-size: 47px;
+	-webkit-text-stroke: 2px green;
+}
+header h1 span {
+    color: white;
+	font-size: 47px;
+	-webkit-text-stroke: 2px red;
+}
+body {
+    background-image: url('images/joy.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+form {
+    display: flex;
+    justify-content: center;
+}
+.names {
+    color: white;
+	font-size: 20px;
+
+}
