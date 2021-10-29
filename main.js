@@ -1,9 +1,17 @@
+const { match } = require('assert');
 const readline = require('readline');
 const rl = require('readline').createInterface({
     input: process.stdin,
     output: process.stdout
 });
-
+const families = [{
+    family1: [
+        'Ryan',
+        'Nikki',
+        'Kade',
+        'Kolbe',
+    ]
+}];
 
 // function to randomize allNames array
 function shuffle(array) {
@@ -22,20 +30,20 @@ function shuffle(array) {
 rl.question('Please enter all the names, seperate each name with a comma: ', (name) => {
     let allNames = new Array();
         allNames = name.split(",").map(item => item.trim());
-    allNames.push(name)
+        let gifters = allNames.slice(),
+            giftGetters = allNames.slice();
+    console.log(gifters, giftGetters)
     shuffle(allNames)
     console.log(`these are the names:`, JSON.stringify(allNames, null, 2))
-    assign(allNames)
     rl.close();
-});
-// function to take a name within the allNames array to another name within that array
-function assign(allNames) {
-    let rand_index = Math.floor(Math.random() * allNames.length);
-    let rand_val = allNames[rand_index];
-    nameOne = allNames[0];
-    nameTwo = rand_val;
-    if(nameOne === nameTwo) {
-        nameTwo++;
+    // function to take a name within the allNames array to another name within that array
+    if(families.includes(giftGetters)) {
+        giftGetters.shift();
     }
-    console.log(`${allNames[0]} is assigned to ${rand_val}`)
-}
+    while (gifters.length) {
+        let giver = gifters.pop(),
+        recievers = giftGetters[0] == giver ? giftGetters.pop() : giftGetters.shift();
+        console.log(`${giver} is assigned to ${recievers}`)
+    }
+});
+
