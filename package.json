@@ -1,0 +1,22 @@
+{
+  "name": "christmas-drawing",
+  "version": "1.0.0",
+  "description": "This project is for a yearly family secret satna tradition and I wanted to create an app that assigns gift givers to gift getters.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KadeRZ/secretsanta.git"
+  },
+  "author": "Kade Zimmerman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KadeRZ/secretsanta/issues"
+  },
+  "homepage": "https://github.com/KadeRZ/secretsanta#readme",
+  "dependencies": {
+    "minimist": "^1.2.5"
+  }
+}

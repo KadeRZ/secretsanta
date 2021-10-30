@@ -1,46 +1,9 @@
 const { match } = require('assert');
-const readline = require('readline');
+const args = require('minimist')(process.argv.slice(2))
 const rl = require('readline').createInterface({
     input: process.stdin,
     output: process.stdout
 });
-    const family1 = [
-        'Ryan',
-        'Nikki',
-        'Kade',
-        'Kolbe',
-        'Daxton',
-        'Ayvri'
-    ];
-    const family2 = [
-        'Tyson',
-        'Ashley Z',
-        'Lily',
-        'Jensen',
-        'Nora'
-    ];
-    const family3 = [
-        'Corey',
-        'Jill',
-        'Addy',
-        'TJ',
-        'Makenley',
-        'Lexi',
-        'Maycie'
-    ];
-    const family4 = [
-        'Phil',
-        'Ashley L',
-        'Khyler',
-        'Cooper'
-    ];
-    const family5 = [
-        'Kaycie',
-        'Akko',
-        'Grayson',
-        'Kyrie'
-    ];
-
 // function to randomize allNames array
 function shuffle(array) {
     let currentIndex = array.length, temporaryValue, randomIndex;
@@ -55,36 +18,33 @@ function shuffle(array) {
     }
     return array
 }
-rl.question('Please enter all the names, seperate each name with a comma: ', (name) => {
-    let allNames = new Array();
-        allNames = name.split(",").map(item => item.trim());
-        let gifters = allNames.slice(),
-            giftGetters = allNames.slice();
-            // shuffle(gifters)
+const families = {
+    
+}
+const recursiveAsyncReadLine = function () {
+    rl.question('Please enter a new family: ', function (names) {
+        if (names == 'done') {
+            let gifters = Object.keys(families),
+            giftGetters = Object.keys(families);
             shuffle(giftGetters)
-            console.log(gifters, giftGetters)
-            console.log(`these are the names:`, JSON.stringify(allNames, null, 2))
-    rl.close();
-    // function to take a name within the allNames array to another name within that array
-    // if(family1.includes(giftGetters)) {
-    //     shuffle();
-    // }
-    // if(family2.includes(giftGetters)) {
-    //     shuffle();
-    // }
-    // if(family3.includes(giftGetters)) {
-    //     shuffle();
-    // }
-    // if(family4.includes(giftGetters)) {
-    //     shuffle();
-    // }
-    // if(family5.includes(giftGetters)) {
-    //     shuffle();
-    // }
-    while (gifters.length) {
-        let giver = gifters.pop(),
-        recievers = giftGetters[0] == giver ? giftGetters.pop() : giftGetters.shift();
-        console.log(`${giver} is assigned to ${recievers}`)
-    }
-});
-
+            while (gifters.length) {
+                let giver = gifters.pop()
+                let receiver = giftGetters[0] == giver ? giftGetters.pop() : giftGetters.shift();
+                // check if receiver is in the givers family
+                if(family1.includes(receiver)) {
+                    // console.log(`${family1}, ${giver} includes ${receiver}`)
+                    // shuffle();
+                }
+                console.log(`${giver} is assigned to ${receiver}`)
+            }
+            return rl.close(); //closing RL and returning from function.
+        }
+        let allNames = names.split(',').map(s => s.trim());
+        allNames.forEach(function callbackFn(giver){ 
+            families[giver] = allNames;
+        })
+        recursiveAsyncReadLine(); //Calling this function again to ask new question
+    });
+};
+  recursiveAsyncReadLine();
+  
